@@ -1,19 +1,19 @@
 package com.example.rest.dto;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import lombok.Data;
-
+import javax.persistence.OneToMany;
 @Entity(name = "user")
-@Data
 public class UserDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "userId")
 	private Integer userId;
 	private String email;
 	private String facebookId;
@@ -26,6 +26,8 @@ public class UserDTO {
 	private Date createAt;
 	private Date birthDate;
 	private String authToken;
+	@OneToMany(mappedBy = "user")
+	private List<UserSessionDTO> userSessions;
 
 	public Integer getUserId() {
 		return userId;

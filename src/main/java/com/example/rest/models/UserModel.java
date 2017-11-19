@@ -1,9 +1,12 @@
 package com.example.rest.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,6 +28,12 @@ public class UserModel {
 	@ApiModelProperty(notes = "Birth Date should be in the Past")
 	private Date birthDate;
 	private String authToken;
+	@NotBlank(message = "loginType should be required")
+	private String deviceToken;
+	private String deviceType;
+	private String loginType;
+
+	private List<UserSessionModel> userSessions;
 
 	public Integer getUserId() {
 		return userId;
@@ -120,6 +129,38 @@ public class UserModel {
 
 	public void setAuthToken(String authToken) {
 		this.authToken = authToken;
+	}
+
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
+	}
+
+	public String getDeviceToken() {
+		return deviceToken;
+	}
+
+	public void setDeviceToken(String deviceToken) {
+		this.deviceToken = deviceToken;
+	}
+
+	public String getDeviceType() {
+		return deviceType;
+	}
+
+	public void setDeviceType(String deviceType) {
+		this.deviceType = deviceType;
+	}
+
+	public List<UserSessionModel> getUserSessions() {
+		return userSessions;
+	}
+
+	public void setUserSessions(List<UserSessionModel> userSessions) {
+		this.userSessions = userSessions;
 	}
 
 }
